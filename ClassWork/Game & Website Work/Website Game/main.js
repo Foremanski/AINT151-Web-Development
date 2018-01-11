@@ -5,11 +5,11 @@
 
 
 
-
 //Engine for multiple choices
 function OnLoad()
 {
 	SelectRoom(0);
+	document.body.style.backgroundColor = "white"
 }
 
 function SelectRoom(roomIndex)
