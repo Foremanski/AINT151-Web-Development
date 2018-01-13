@@ -4,14 +4,12 @@
 
 
 
-
 //Engine for multiple choices
 function OnLoad()
 {
 	SelectRoom(0);
-	document.body.style.backgroundColor = "white"
+	document.body.style.backgroundColor = "black"
 }
-
 function SelectRoom(roomIndex)
 {
 	document.getElementById('roomTitle').innerHTML =  roomArray[roomIndex].title;
