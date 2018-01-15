@@ -89,7 +89,7 @@ var roomArray = [
 		   index: 3
 		 },
 		 {
-			 text:'Proceed deeper into the cave',
+			 text:'Proceed deeper into the cave (Requires flashlight)',
 			 index:6
 		 },
 	 ]
@@ -121,7 +121,7 @@ var roomArray = [
 	text:'Coming from the field you are now dwarfed by the sides of the ship you travelled on. A door stands in front of you that will likely lead to the main section of the ship. However you will need a keycard to gain access to this part of the ship. ',
 	choices: [
 		{
-			text:'Open up the door and proceed inside ',
+			text:'Open up the door and proceed inside (requires charred keycard) ',
 			index: 8
 		},
 		{
@@ -153,7 +153,7 @@ var roomArray = [
 	text:'Travelling towards the eerie red light. You come across a door in the cave, a little red light flashing beside it. The ship must have made quite an impact to have a ship entrance reach this far down. To open the door you’ll need a keycard of some sort',
 	choices: [
 		{
-			text:'Go through the door',
+			text:'Go through the door (reuires charred Keycard)',
 			index: 8
 		},
 		{
