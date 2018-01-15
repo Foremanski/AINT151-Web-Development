@@ -275,7 +275,8 @@ var roomArray = [
  {
  	 title: 'Search the Cliffside', //17
  	 text: 'You decide to look around to see if there is anything of use from the ruins of the pod. You find a flashlight that could be useful in dark places (Player gains flashlight that can be used in caves)',
- 	 choices: [
+
+	 choices: [
  		 {
  		 text:'Back to Cliffside',
  		 index: 1
