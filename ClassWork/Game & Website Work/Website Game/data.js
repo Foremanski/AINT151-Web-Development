@@ -1,4 +1,7 @@
-
+var flashlight = false;
+var weapon = false;
+var vine = false
+var coreActivation = false
 
 var roomArray = [
 
@@ -13,7 +16,7 @@ var roomArray = [
 		]
 	},
  {
- 	 title: 'Pull emergency lever', //1
+ 	 title: 'Cliffside', //1
  	 text: 'With the pod behind you, you step onto a rocky cliffside. Below you is a dense jungle, but you will need something to climb down with. To the left of you is a lighter and less dense forest. You could also search the surrounding area as well.',
  	 choices: [
  		{
@@ -26,7 +29,8 @@ var roomArray = [
  	 },
  	 {
  		 text: 'Proceed to Jungle',
-  		 index: 2
+  	 index: 2,
+		 required: "vine"
  	 },
  	 ]
  },
@@ -45,7 +49,7 @@ var roomArray = [
   ]
  },
  {
-	title: 'Proceed to Forest', //3
+	title: 'Forest', //3
 	text:'You step into the forest, hoping it will lead you to the ship. As you walk through you see a dark opening in the ground, a cave system by some sorts. You could go down there but you will need something to light the way.',
 	choices: [
 		{
@@ -62,7 +66,8 @@ var roomArray = [
     },
 		{
 		 text: 'Search forest area',
-		 index: 18
+		 index: 18,
+		 
 	},
 	]
 },
@@ -90,12 +95,13 @@ var roomArray = [
 		 },
 		 {
 			 text:'Proceed deeper into the cave (Requires flashlight)',
-			 index:6
+			 index:6,
+			 required:"flashlight"
 		 },
 	 ]
 },
 {
-	title: 'Cave choice', //6
+	title: 'Cave Intersection', //6
 	text: 'You come across an intersection in the cave. One tunnel looks like it opens up more, one tunnel has what appears to be natural light coming from it, one tunnel has an eerie red glow and one appears to have pieces of metal spread around it.',
   choices: [
 		{
@@ -117,7 +123,7 @@ var roomArray = [
 	]
 },
 {
-	title:'Ship entrance ', //7
+	title:'Ship Entrance ', //7
 	text:'Coming from the field you are now dwarfed by the sides of the ship you travelled on. A door stands in front of you that will likely lead to the main section of the ship. However you will need a keycard to gain access to this part of the ship. ',
 	choices: [
 		{
@@ -249,7 +255,7 @@ var roomArray = [
 	]
 },
 {
-	title:'The Drive', //15
+	title:'The Core', //15
 	text:'It feels like forever, but you’ve finally made it to the core of the ship. Thank god the core didn’t explode, otherwise you wouldn’t have had a planet to land on in the first place.You look to the far side of the massive room to find the entrance to the shuttle, freedom just in sight.But between you and that is a monster. A creature that looks like a panther, but with fur as black as a black hole. It’s like no light bounces off of it at all. Thank god you made it before midnight, the panther in front of you looks much more suited to hunting things at night. It looks like the animal wants to fight, intending to get an early meal.  You might be able to take down the creature quickly depending on what you have, otherwise this may be a tough fight',
 	choices: [
 		{
@@ -286,7 +292,7 @@ var roomArray = [
  {
   	 title: 'Search forest area', //18
   	 text: 'Looking around, the forest area is covered by vines. You cut off a sizable vine from the nearest tree, thinking it could be used for something. (Player gains vine which can be used to go down into the jungle',
-  	 choices: [
+		 choices: [
   		 {
   		 text: 'Back to forest',
   		 index: 3
@@ -324,7 +330,7 @@ var roomArray = [
 	]
 },
 {
- 	 title:'Continue walking through the forest', //22
+ 	 title:'Forest Edge', //22
  	 text:'After walking for sometime, it’s obvious that this way will not lead to the ship. However pieces of the ship do seem to be strewn around the area. You should probably turn around and find a different route.',
  	 choices: [
  	  {

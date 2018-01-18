@@ -13,12 +13,16 @@ body{
 h1  {
       text-align: center;
     }
-h3 {
+h3  {
       text-align: center;
+      display: block;
     }
 h4  {
       text-align: right;
+      display: inline;
+      float: center;
     }
+
 p   {
       text-align: center;
     }
@@ -44,7 +48,7 @@ button {
 
 img {
       text-align: center;
-      display: inline-block;
+      display: inline-flex;
       border-right: solid;
     }
 
@@ -57,15 +61,20 @@ img {
 <p> A planet full of dangers, a game full of choices. Will you escape, or perish in your attempt?
 
 <hr>
-
-<div>
-<h4 > Inventory </h4>
-<h3> Map</p>
+<div style="width:100%; margin:0 auto;">
+  <div style="float:left; width:60%;">
+    <h3> Map</h3>
+    <div>
+      <img height="350" width="500" alt="Planetary Map" src ="Game Map FLAT.png" />
+    </div>
+  </div>
+  <div style="float:left; width:40%;">
+    <h4> Inventory </h4>
+  </div>
 </div>
+<div style="clear:both"></div>
 
-<div>
-<img height="350" width="500" alt="Planetary Map" src ="Game Map FLAT.png" />
-</div>
+
 
 <hr>
 
