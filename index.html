@@ -18,9 +18,7 @@ h3  {
       display: block;
     }
 h4  {
-      text-align: right;
-      display: inline;
-      float: center;
+      text-align: center;
     }
 
 p   {
@@ -28,6 +26,9 @@ p   {
     }
 div {
        text-align: center;
+    }
+li  {
+      text-align: center;
     }
 
 button {
@@ -48,10 +49,7 @@ button {
 
 img {
       text-align: center;
-      display: inline-flex;
-      border-right: solid;
     }
-
 
 </style>
 </head>
@@ -61,20 +59,24 @@ img {
 <p> A planet full of dangers, a game full of choices. Will you escape, or perish in your attempt?
 
 <hr>
-<div style="width:100%; margin:0 auto;">
-  <div style="float:left; width:60%;">
-    <h3> Map</h3>
-    <div>
-      <img height="350" width="500" alt="Planetary Map" src ="Game Map FLAT.png" />
-    </div>
-  </div>
-  <div style="float:left; width:40%;">
-    <h4> Inventory </h4>
-  </div>
+
+<h3> Map</h3>
+
+<div>
+<img height="350" width="500" alt="Planetary Map" src ="Game Map FLAT.png" />
 </div>
+
+<h4> Inventory </h4>
+
+<ul id ="Inventory" style="list-style-type: none"> 
+<!-- <li> Flashlight </li>
+<li> Vine       </li>
+<li> Ship Codes </li>
+<li> Keycard    </li>
+<li> Weapon     </li> -->
+</ul>
+
 <div style="clear:both"></div>
-
-
 
 <hr>
 
@@ -82,8 +84,6 @@ img {
 <p id="roomText">Room text</p>
 
 <div id="roomChoices">Room choice buttons</div>
-
-
 
 </body>
 </html>

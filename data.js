@@ -1,7 +1,10 @@
 var flashlight = false;
 var weapon = false;
-var vine = false
-var coreActivation = false
+var vine = false;
+var coreActivation = false;
+var shipCode = false;
+var keycard = false;
+var clearItems
 
 var roomArray = [
 
@@ -11,7 +14,8 @@ var roomArray = [
 		choices: [
 			{
 				text:'Pull emergency lever',
-				index:1
+				index:1,
+				gain: "clearItems"
 			}
 		]
 	},
@@ -21,17 +25,17 @@ var roomArray = [
  	 choices: [
  		{
  		 		text: 'Search the Cliffside',
- 		 		index: 17
+ 		 		index: 17,
 	 	},
  	 	{
  		 		text: 'Proceed to Forest',
  		 		index: 3
- 	 },
- 	 {
- 		 text: 'Proceed to Jungle',
-  	 index: 2,
-		 required: "vine"
- 	 },
+ 	  },
+ 	  {
+ 		 		text: 'Proceed to Jungle',
+  	 		index: 2,
+		 		required: "vine"
+ 	  },
  	 ]
  },
  {
@@ -67,13 +71,13 @@ var roomArray = [
 		{
 		 text: 'Search forest area',
 		 index: 18,
-		 
+
 	},
 	]
 },
 {
 	title: 'Field', //4
-	text:'You now stand in a field , behind you is the dense jungle and just ahead of you is the ruins of ship. Out of the corner of your eye you spot what appears to be a cave opening. ',
+	text:'You now stand in a field , behind you is the dense jungle and just ahead of you is the ruins of ship. Out of the corner of your eye you spot what appears to be a cave opening, but it looks too dark to explore without a flashlight. ',
 	choices: [
 		{
 			text: 'Proceed to ship entrance',
@@ -81,20 +85,22 @@ var roomArray = [
 		},
 		{
 			text: 'Explore the cave',
-			index: 6
+			index: 6,
+			required: "flashlight"
+
 		},
 	]
 },
 {
    title:'Cave', //5
-	 text:'You now stand in a cavern, light from a forest streaming down into the cave. Ahead of you is a continuation of the cave, but it does lead deeper',
+	 text:'You now stand in a cavern, light from a forest streaming down into the cave. Ahead of you is a continuation of the cave, but it looks too dark to explore without a flashlight',
 	 choices:[
 		 {
 			 text: 'Go back to forest',
 		   index: 3
 		 },
 		 {
-			 text:'Proceed deeper into the cave (Requires flashlight)',
+			 text:'Proceed deeper into the cave',
 			 index:6,
 			 required:"flashlight"
 		 },
@@ -124,14 +130,15 @@ var roomArray = [
 },
 {
 	title:'Ship Entrance ', //7
-	text:'Coming from the field you are now dwarfed by the sides of the ship you travelled on. A door stands in front of you that will likely lead to the main section of the ship. However you will need a keycard to gain access to this part of the ship. ',
+	text:'Coming from the field you are now dwarfed by the sides of the ship you travelled on. A door stands in front of you that will likely lead to the main section of the ship. However you will need the ships access code to enter.',
 	choices: [
 		{
-			text:'Open up the door and proceed inside (requires charred keycard) ',
-			index: 8
+			text:'Open up the door and proceed inside.',
+			index: 8,
+			required: "shipCode"
 		},
 		{
-			text: 'Go back to the field',
+			text: 'Go back to the field.',
 			index: 4
 		},
 	]
@@ -156,11 +163,12 @@ var roomArray = [
 },
 {
 	title:'Sub-Entrance', //9
-	text:'Travelling towards the eerie red light. You come across a door in the cave, a little red light flashing beside it. The ship must have made quite an impact to have a ship entrance reach this far down. To open the door you’ll need a keycard of some sort',
+	text:'Travelling towards the eerie red light. You come across a door in the cave, a little red light flashing beside it. The ship must have made quite an impact to have a ship entrance reach this far down. To open the door you’ll need to get the access codes.',
 	choices: [
 		{
-			text:'Go through the door (reuires charred Keycard)',
-			index: 8
+			text:'Go through the door',
+			index: 8,
+			required: "shipCode"
 		},
 		{
 			text: 'Go back to the intersection',
@@ -227,22 +235,24 @@ var roomArray = [
 			index: 11
 		},
 		{
-			text:'Proceed to the core (Requires activation from bridge)',
-			index:15
-		},
-		{
-			text:'Walk to the bridge (requires keycard from crew quarters)',
-			index: 14
+			text:'Proceed to the core ',
+			index:15,
+			required: "coreActivation"
 		},
 		{
 			text:'Proceed to crew quarters',
 			index: 12
 		},
+		{
+			text:'Travel to the bridge',
+			index: 14,
+			required: "keycard"
+		},
 	]
 },
 {
 	title:'Bridge', //14
-	text:'Using the keycard, you walk onto the bridge, it’s glass windows looking out over the planet. It remains slightly undamaged considering the state for the rest of the ship. Now to find the correct button...',
+	text:'Using the keycard, you walk onto the bridge, it’s cracked glass windows looking out over the planet. It remains slightly undamaged considering the state for the rest of the ship. Now to find the correct button...',
 	choices: [
 		{
 			text:'Activate core door',
@@ -260,7 +270,8 @@ var roomArray = [
 	choices: [
 		{
 			text:'Use Weapon',
-			index: 24
+			index: 24,
+			required: "weapon"
 		},
 		{
 			text: 'Quickly search area',
@@ -280,22 +291,23 @@ var roomArray = [
 },
  {
  	 title: 'Search the Cliffside', //17
- 	 text: 'You decide to look around to see if there is anything of use from the ruins of the pod. You find a flashlight that could be useful in dark places (Player gains flashlight that can be used in caves)',
-
+ 	 text: 'You decide to look around to see if there is anything of use from the ruins of the pod. You find a flashlight that could be useful in dark places',
 	 choices: [
  		 {
  		 text:'Back to Cliffside',
- 		 index: 1
+ 		 index: 1,
+		 gain: "flashlight"
  	   },
  	 ]
  },
  {
   	 title: 'Search forest area', //18
-  	 text: 'Looking around, the forest area is covered by vines. You cut off a sizable vine from the nearest tree, thinking it could be used for something. (Player gains vine which can be used to go down into the jungle',
+  	 text: 'Looking around, the forest area is covered by vines. You cut off a sizable vine from the nearest tree, thinking it could be used for something.',
 		 choices: [
   		 {
   		 text: 'Back to forest',
-  		 index: 3
+  		 index: 3,
+			 gain: "vine"
   	   }
   	 ]
 },
@@ -305,7 +317,8 @@ var roomArray = [
 	choices: [
 		{
 			text:'Go back to hallway',
-			index: 11
+			index: 11,
+			gain: "weapon"
 		},
 	]
 },
@@ -315,7 +328,8 @@ var roomArray = [
 	choices: [
 		{
 			text:'Back to bridge',
-			index: 14
+			index: 14,
+			gain: "coreActivation"
 		},
 	]
 },
@@ -325,7 +339,8 @@ var roomArray = [
 	choices: [
 		{
 			text:'Back to crew quarters',
-			index: 12
+			index: 12,
+			gain: "keycard"
 		},
 	]
 },
@@ -345,11 +360,12 @@ var roomArray = [
 },
 {
  	title:'Search forest edge', //23
- 	text: 'You look around and find a charred keycard. Hopefully it will still work on some of the doors. (Player gains entrance card)',
+ 	text: 'You look around and find a damaged but still functioning datapad, looking through it you find the access code to the ship. Now you can easily access the ship!',
  	choices: [
  		{
  		text: 'Back to forest edge',
- 		index: 22
+ 		index: 22,
+		gain: "shipCode"
 	},
  	]
 },
